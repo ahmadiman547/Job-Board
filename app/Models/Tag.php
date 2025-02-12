@@ -4,15 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class Employer extends Model
+class Tag extends Model
 {
-    /** @use HasFactory<\Database\Factories\EmployerFactory> */
+    /** @use HasFactory<\Database\Factories\TagFactory> */
     use HasFactory;
 
     public function jobs()
     {
-        return $this->HasMany(Job::class);
+        return $this->belongsToMany(Job::class, relatedPivotKey: "job_listing_id");
     }
 }
